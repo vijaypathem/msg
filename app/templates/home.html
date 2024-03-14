@@ -1,0 +1,40 @@
+<!-- home.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <h1>Welcome to Secret Messages</h1>
+    {% if user.is_authenticated %}
+    <p>
+      <button class="button-home">
+        <a href="{% url 'inbox' %}">View Messages</a>
+      </button>
+      <button class="button-home">
+        <a href="{% url 'logout' %}">Logout</a>
+      </button>
+      <button class="button-home">
+        <a href="{% url 'send_message' %}">Send Message</a>
+      </button>
+    </p>
+    {% else %}
+    <p>
+      <button class="button-home">
+        <a href="{% url 'register' %}">Register</a>
+      </button>
+      <button class="button-home">
+        <a href="{% url 'login' %}">Login</a>
+      </button>
+      <button class="button-home">
+        <a href="{% url 'send_message' %}">Send Message</a>
+      </button>
+    </p>
+    {% endif %}
+  </body>
+</html>

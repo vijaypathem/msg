@@ -1,0 +1,29 @@
+<!-- home.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inbox</title>
+    <link rel="stylesheet" href="{% static 'css/inbox.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <h1>Your Secret Inbox</h1>
+    {% if user.is_authenticated %}
+    <h2>{{ user.username }} Inbox 🥰</h2>
+    {% if user_messages %} {% for message in user_messages %}
+    <blockquote><li>{{ message.content }}</li></blockquote>
+    {% endfor %} {% else %}
+    <p>No Messages Found</p>
+    {% endif %} {% endif %}
+    <button class="button-home">
+      <a href="{% url 'logout' %}">Logout</a>
+    </button>
+    <button class="button-home">
+      <a href="{% url 'send_message' %}">Send Message</a>
+    </button>
+  </body>
+</html>
